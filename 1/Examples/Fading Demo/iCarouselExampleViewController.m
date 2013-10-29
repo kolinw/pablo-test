@@ -102,7 +102,7 @@
         //this `if (view == nil) {...}` statement because the view will be
         //recycled and used with other index values later
         CGSize size = [UIScreen mainScreen].bounds.size;
-        view = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, size.width-10, size.height-10)];
+        view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
         ((UIImageView *)view).image = [UIImage imageNamed:@"page.png"];
         view.contentMode = UIViewContentModeCenter;
         view.backgroundColor = [UIColor whiteColor];
@@ -159,7 +159,8 @@
 
 - (void)endChangeSlider{
     NSLog(@"%s", "TOUCH UP SLIDER");
-    UIView *currentView = [carousel itemViewAtIndex:carousel.currentItemIndex ];
+    UIView *currentView = [carousel itemViewAtIndex:currentStep ];
+    // TODO : comprendre pourquoi el recyclage des vues change le backgroundColor de place ...
     currentView.backgroundColor = [UIColor blackColor];
 }
 
