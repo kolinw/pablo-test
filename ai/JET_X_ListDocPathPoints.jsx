@@ -9,7 +9,8 @@ if ( app.documents.length > 0 ) {
 	textRef.contents="";
 	var pathRefs=docRef.pathItems;
 	var pathCount=pathRefs.length;
-	var scaleFactor=prompt("Native Illustrator coordinates are measured in points (1/72\"). If you would like a different unit of measure, enter an appropriate divisor:",1);
+	//var scaleFactor=prompt("Native Illustrator coordinates are measured in points (1/72\"). If you would like a different unit of measure, enter an appropriate divisor:",1);
+	var scaleFactor = 1;
 	for ( i = pathCount-1; i >= 0 ; i-- ) {
 		var currPath=pathRefs[i];
 		var pointRefs=currPath.pathPoints;

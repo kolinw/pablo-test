@@ -13,6 +13,8 @@
 @interface iCarouselExampleViewController : UIViewController <iCarouselDataSource, iCarouselDelegate>
 
 @property (nonatomic, strong) IBOutlet iCarousel *carousel;
+@property (unsafe_unretained, nonatomic) IBOutlet UIButton *btn;
+- (IBAction)onValueChanged:(UISlider *)sender;
 
 - (IBAction)onTouch5:(id)sender;
 

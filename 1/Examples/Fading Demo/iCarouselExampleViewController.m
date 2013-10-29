@@ -12,6 +12,7 @@
 @interface iCarouselExampleViewController ()
 
 @property (nonatomic, strong) NSMutableArray *items;
+@property (nonatomic) NSInteger *currentStep;
 
 @end
 
@@ -19,7 +20,9 @@
 @implementation iCarouselExampleViewController
 
 @synthesize carousel;
+@synthesize currentStep;
 @synthesize items;
+@synthesize btn;
 
 - (void)awakeFromNib
 {
@@ -59,9 +62,11 @@
     
     //configure carousel
     carousel.type = iCarouselTypeInvertedTimeMachine;
-    carousel.viewpointOffset = CGSizeMake(-150, 0);
-    carousel.contentOffset = CGSizeMake(-150, 0);
+    carousel.bounces = NO;
+    
+    currentStep = 0;
 //    carousel.decelerationRate = 0;
+    
 }
 
 - (void)viewDidUnload
@@ -96,8 +101,8 @@
         //don't do anything specific to the index within
         //this `if (view == nil) {...}` statement because the view will be
         //recycled and used with other index values later
-        CGSize size = self.view.frame.size;
-        view = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, size.width-100, size.height-100)];
+        CGSize size = [UIScreen mainScreen].bounds.size;
+        view = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, size.width-10, size.height-10)];
         ((UIImageView *)view).image = [UIImage imageNamed:@"page.png"];
         view.contentMode = UIViewContentModeCenter;
         view.backgroundColor = [UIColor whiteColor];
@@ -122,6 +127,8 @@
     //in the wrong place in the carousel
     label.text = [items[index] stringValue];
     
+
+    
     return view;
 }
 
@@ -135,12 +142,33 @@
             return 0.2;
         case iCarouselOptionFadeRange:
             return 2.0;
+        case iCarouselOptionTilt:
+            return 0;
+        case iCarouselOptionSpacing:
+            return 2;
+        case iCarouselOptionWrap:
+            return NO;
         default:
             return value;
     }
 }
 
+- (IBAction)onValueChanged:(UISlider *)sender {
+    
+    NSInteger newIndex = (NSInteger)(sender.value + 0.5);
+    if(newIndex != (int)currentStep  ){
+        NSLog(@"slider value = %lu", (unsigned long)newIndex);
+        [carousel scrollToItemAtIndex:newIndex duration:0.3];
+        currentStep = newIndex;
+    }
+    
+}
+
 - (IBAction)onTouch5:(id)sender {
-    [carousel scrollToItemAtIndex:5 duration:1000];
+    [carousel scrollToItemAtIndex:5 duration:1];
+    NSLog(@"%s", "GO TO 5");
+}
+- (void)carouselDidEndScrollingAnimation:(iCarousel *)localCarousel {
+        NSLog(@"END SCROLL AT %ld", (long)localCarousel.currentItemIndex);
 }
 @end
