@@ -153,22 +153,43 @@
     }
 }
 
+- (void)carouselDidEndScrollingAnimation:(iCarousel *)localCarousel {
+    NSLog(@"END SCROLL AT %ld %i", (long)localCarousel.currentItemIndex, (int)currentStep);
+}
+
+- (void)endChangeSlider{
+    NSLog(@"%s", "TOUCH UP SLIDER");
+    UIView *currentView = [carousel itemViewAtIndex:carousel.currentItemIndex ];
+    currentView.backgroundColor = [UIColor blackColor];
+}
+
+#pragma mark -
+#pragma mark UI events methods
+
 - (IBAction)onValueChanged:(UISlider *)sender {
     
-    NSInteger newIndex = (NSInteger)(sender.value + 0.5);
-    if(newIndex != (int)currentStep  ){
-        NSLog(@"slider value = %lu", (unsigned long)newIndex);
-        [carousel scrollToItemAtIndex:newIndex duration:0.3];
-        currentStep = newIndex;
-    }
+    NSInteger newStep = (NSInteger)(sender.value);
+    NSLog(@"slider value = %lu", (unsigned long)newStep);
+    NSLog(@"current step = %lu", (unsigned long)currentStep);
     
+    if(newStep != (int)currentStep  ){
+        [carousel scrollToItemAtIndex:currentStep duration:0.3];
+        currentStep = newStep;
+    }
+}
+
+- (IBAction)onTouchUp:(id)sender {
+    [self endChangeSlider];
+}
+
+- (IBAction)onTouchUpOut:(id)sender {
+    [self endChangeSlider];
 }
 
 - (IBAction)onTouch5:(id)sender {
     [carousel scrollToItemAtIndex:5 duration:1];
     NSLog(@"%s", "GO TO 5");
 }
-- (void)carouselDidEndScrollingAnimation:(iCarousel *)localCarousel {
-        NSLog(@"END SCROLL AT %ld", (long)localCarousel.currentItemIndex);
-}
+
+
 @end

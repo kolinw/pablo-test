@@ -15,6 +15,8 @@
 @property (nonatomic, strong) IBOutlet iCarousel *carousel;
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *btn;
 - (IBAction)onValueChanged:(UISlider *)sender;
+- (IBAction)onTouchUp:(id)sender;
+- (IBAction)onTouchUpOut:(id)sender;
 
 - (IBAction)onTouch5:(id)sender;
 
