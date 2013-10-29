@@ -169,11 +169,11 @@
 - (IBAction)onValueChanged:(UISlider *)sender {
     
     NSInteger newStep = (NSInteger)(sender.value);
-    NSLog(@"slider value = %lu", (unsigned long)newStep);
-    NSLog(@"current step = %lu", (unsigned long)currentStep);
-    
-    if(newStep != (int)currentStep  ){
-        [carousel scrollToItemAtIndex:currentStep duration:0.3];
+
+    if(newStep != (int)currentStep) {
+        NSLog(@"SCROLL FROM %lu", (unsigned long)currentStep);
+        NSLog(@"TO %lu", (unsigned long)newStep);
+        [carousel scrollToItemAtIndex:newStep duration:0.3];
         currentStep = newStep;
     }
 }
