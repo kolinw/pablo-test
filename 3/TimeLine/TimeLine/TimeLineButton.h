@@ -10,4 +10,6 @@
 
 @interface TimeLineButton : UIButton
 
+@property (nonatomic, retain) CAShapeLayer *btn;
+
 @end

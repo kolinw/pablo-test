@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33AA23B2182184DA00855D97 /* TimeLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AA23B1182184DA00855D97 /* TimeLineButton.m */; };
 		91A21D961821043200DB508B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A21D951821043200DB508B /* Foundation.framework */; };
 		91A21D981821043200DB508B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A21D971821043200DB508B /* CoreGraphics.framework */; };
 		91A21D9A1821043200DB508B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A21D991821043200DB508B /* UIKit.framework */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		33AA23B0182184DA00855D97 /* TimeLineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineButton.h; sourceTree = "<group>"; };
+		33AA23B1182184DA00855D97 /* TimeLineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeLineButton.m; sourceTree = "<group>"; };
 		91A21D921821043200DB508B /* TimeLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A21D951821043200DB508B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		91A21D971821043200DB508B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -117,6 +120,8 @@
 			children = (
 				91A21DC91821079B00DB508B /* TimeLineView.h */,
 				91A21DCA1821079B00DB508B /* TimeLineView.m */,
+				33AA23B0182184DA00855D97 /* TimeLineButton.h */,
+				33AA23B1182184DA00855D97 /* TimeLineButton.m */,
 				91A21DC41821045C00DB508B /* TimeLineViewController.h */,
 				91A21DC51821045C00DB508B /* TimeLineViewController.m */,
 				91A21DC61821045C00DB508B /* TimeLineViewController.xib */,
@@ -258,6 +263,7 @@
 				91A21DC71821045C00DB508B /* TimeLineViewController.m in Sources */,
 				91A21DA21821043300DB508B /* main.m in Sources */,
 				91A21DCB1821079B00DB508B /* TimeLineView.m in Sources */,
+				33AA23B2182184DA00855D97 /* TimeLineButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +464,7 @@
 				91A21DC01821043300DB508B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		91A21DC11821043300DB508B /* Build configuration list for PBXNativeTarget "TimeLineTests" */ = {
 			isa = XCConfigurationList;
@@ -466,6 +473,7 @@
 				91A21DC31821043300DB508B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
