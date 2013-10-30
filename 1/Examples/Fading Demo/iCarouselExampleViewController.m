@@ -174,7 +174,7 @@
     if(newStep != (int)currentStep) {
         NSLog(@"SCROLL FROM %lu", (unsigned long)currentStep);
         NSLog(@"TO %lu", (unsigned long)newStep);
-        [carousel scrollToItemAtIndex:newStep duration:0.3];
+        [carousel scrollToItemAtIndex:newStep animated:YES];
         currentStep = newStep;
     }
 }
