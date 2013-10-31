@@ -141,7 +141,8 @@
 //        // Add to parent layer
 //        [self.layer addSublayer:circle];
 
-        TimeLineButton *step = [[TimeLineButton alloc] initWithFrame:CGRectMake(50,VMARGIN+((self.height-VMARGIN)/NB_DOTS)*i,20,20)];
+        int radius = 5;
+        TimeLineButton *step = [[TimeLineButton alloc] initWithFrame:CGRectMake(self.width/2-2*radius+0.5,VMARGIN+((self.height-VMARGIN)/NB_DOTS)*i,20,20)];
 
         [dots addObject:step];
         
