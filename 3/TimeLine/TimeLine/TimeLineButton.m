@@ -17,8 +17,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.bounds = CGRectMake(0, 0, 20, 20);
+        self.bounds = CGRectMake(0, 0, 10, 10);
         self.clipsToBounds = YES;
+        // disable touch on button, handled by parent view
+        self.userInteractionEnabled = NO;
     }
     return self;
 }
@@ -52,8 +54,5 @@
     [self.layer addSublayer:btn];
 
 }
-
-
-
 
 @end

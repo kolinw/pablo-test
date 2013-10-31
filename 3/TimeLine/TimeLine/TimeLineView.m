@@ -31,11 +31,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        TimeLineButton *step1 = [[TimeLineButton alloc] initWithFrame:CGRectMake(0,0,100,100)];
-//        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//        [button setTitle:@"Show View" forState:UIControlStateNormal];
-//        button.frame = CGRectMake(0, 0, 160.0, 40.0);
-        //[self addSubview:step1];
+
         
         dots = [[NSMutableArray alloc] init];
     }
@@ -73,20 +69,20 @@
     // COLOR ANIM
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
     animation.duration = 1.0;
-    animation.toValue = (__bridge id)[UIColor colorWithHue:0 saturation:.1 brightness:.1 alpha:.1].CGColor;
+    animation.toValue = (__bridge id)[UIColor whiteColor].CGColor;
     
     [animation setFillMode:kCAFillModeForwards];
     [animation setRemovedOnCompletion:NO];
     //[[self.layer.sublayers objectAtIndex:stepNb] addAnimation:animation forKey:animation.keyPath];
     
     // SCALE ANIM
-    CABasicAnimation *animation2 = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    animation2.toValue = [NSNumber numberWithFloat:3.0];
-    animation2.duration = 0.20f;
-    
-    [animation2 setFillMode:kCAFillModeForwards];
-    [animation2 setRemovedOnCompletion:NO];
-    [[self.layer.sublayers objectAtIndex:stepNb] addAnimation:animation2 forKey:animation2.keyPath];
+//    CABasicAnimation *animation2 = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+//    animation2.toValue = [NSNumber numberWithFloat:3.0];
+//    animation2.duration = 0.20f;
+//    
+//    [animation2 setFillMode:kCAFillModeForwards];
+//    [animation2 setRemovedOnCompletion:NO];
+//    [[self.layer.sublayers objectAtIndex:stepNb] addAnimation:animation2 forKey:animation2.keyPath];
     
     // TRANSLATE CONTRE SCALE
 //    CABasicAnimation *animation3 = [CABasicAnimation animationWithKeyPath:@"position"];
@@ -109,74 +105,107 @@
     [[self.layer.sublayers objectAtIndex:stepNb] addAnimation:animation forKey:animation.keyPath];
     
     // SCALE ANIM
-    CABasicAnimation *animation2 = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    animation2.toValue = [NSNumber numberWithFloat:2.0];
-    animation2.duration = 0.20f;
-    
-    [animation2 setFillMode:kCAFillModeForwards];
-    [animation2 setRemovedOnCompletion:NO];
-    [[self.layer.sublayers objectAtIndex:stepNb] addAnimation:animation2 forKey:animation2.keyPath];
+//    CABasicAnimation *animation2 = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+//    animation2.toValue = [NSNumber numberWithFloat:2.0];
+//    animation2.duration = 0.20f;
+//    
+//    [animation2 setFillMode:kCAFillModeForwards];
+//    [animation2 setRemovedOnCompletion:NO];
+//    [[self.layer.sublayers objectAtIndex:stepNb] addAnimation:animation2 forKey:animation2.keyPath];
 
 }
 
 -(void) drawSteps
 {
-    for(int i = 1; i <= 2; i = i + 1)
+    for(int i = 0; i <= 1; i = i + 1)
     {
         
-        // Set up the shape of the circle
-        int radius = 5;
-        CAShapeLayer *circle = [CAShapeLayer layer];
+//        // Set up the shape of the circle
+//        int radius = 5;
+//        CAShapeLayer *circle = [CAShapeLayer layer];
+//        
+//        [dots addObject:circle];
+//        
+//        // Make a circular shape
+//        circle.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 2.0*radius, 2.0*radius)
+//                                                 cornerRadius:radius].CGPath;
+//        // Center the shape
+//        circle.position = CGPointMake(self.width/2-radius+0.5, VMARGIN+(self.height/NB_DOTS)*i);
+//        
+//        circle.anchorPoint = CGPointMake(0, 0);
+//        
+//        // Configure the apperence of the circle
+//        circle.fillColor = [UIColor grayColor].CGColor;
+//        circle.lineWidth = 0;
+//        
+//        // Add to parent layer
+//        [self.layer addSublayer:circle];
+
+        TimeLineButton *step = [[TimeLineButton alloc] initWithFrame:CGRectMake(50,VMARGIN+((self.height-VMARGIN)/NB_DOTS)*i,20,20)];
+
+        step.tag = i;
         
-        [dots addObject:circle];
-        
-        // Make a circular shape
-        circle.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 2.0*radius, 2.0*radius)
-                                                 cornerRadius:radius].CGPath;
-        // Center the shape
-        circle.position = CGPointMake(self.width/2-radius+0.5, 50*i);
-        NSLog(@"%d", 50*i);
-        
-        circle.anchorPoint = CGPointMake(0, 0);
-        
-        // Configure the apperence of the circle
-        circle.fillColor = [UIColor whiteColor].CGColor;
-        circle.lineWidth = 0;
-        
-        // Add to parent layer
-        [self.layer addSublayer:circle];
+        [self addSubview:step];
         
     }
 
 }
 
-- (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+-(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    CAShapeLayer *closest = [self findClosestDotFromTouch:touches];
-    NSInteger idClosest = [dots indexOfObject:closest];
+//    CAShapeLayer *closest = [self findClosestDotFromTouch:touches];
+//    NSInteger idClosest = [dots indexOfObject:closest];
+//    
+//    [self animateHoverStepWithId:idClosest];
     
-    [self animateHoverStepWithId:idClosest];
+    UITouch *touch = [touches anyObject];
+    CGPoint p = [touch locationInView:self];
+    
+
+    NSLog(@"TAG %ld", (long)touch.view.tag);
+    NSLog(@"%f, %f", p.x, p.y);
+    
+    
+
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    CAShapeLayer *closest = [self findClosestDotFromTouch:touches];
-    NSInteger idClosest = [dots indexOfObject:closest];
+//    CAShapeLayer *closest = [self findClosestDotFromTouch:touches];
+//    NSInteger idClosest = [dots indexOfObject:closest];
+//    
+//    [self animateHoverStepWithId:idClosest];
     
-    [self animateHoverStepWithId:idClosest];
+    UITouch *touch = [touches anyObject];
+    CGPoint p = [touch locationInView:self];
+    
+    for (UIView *subview in self.subviews)
+    {
+        if (CGRectContainsPoint(subview.frame, p) )
+        {
+            // Found the subview the user touched
+            NSLog(@"SUBVIEW TAG %ld", (long)subview.tag);
+        }
+    }
+    
+    
+    
+    NSLog(@"%f, %f", p.x, p.y);
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    CAShapeLayer *closest = [self findClosestDotFromTouch:touches];
-    NSInteger idClosest = [dots indexOfObject:closest];
-    
-    [self animateActiveStepWithId:idClosest];
+//    CAShapeLayer *closest = [self findClosestDotFromTouch:touches];
+//    NSInteger idClosest = [dots indexOfObject:closest];
+//    
+//    NSLog(@"ACTIVE = %i", idClosest);
+//    
+//    [self animateActiveStepWithId:idClosest];
 }
 
 - (CAShapeLayer *) findClosestDotFromTouch:(NSSet *)touches
 {
     NSArray *touchesArray = [touches allObjects];
     UITouch *touch = (UITouch *)[touchesArray objectAtIndex:0];
-    CGPoint point = [touch locationInView:nil];
+    CGPoint point = [touch locationInView:self];
     
     NSInteger min = 1000;
     CAShapeLayer *closest;
