@@ -11,5 +11,10 @@
 @interface TimeLineButton : UIButton
 
 @property (nonatomic, retain) CAShapeLayer *btn;
+@property (nonatomic) BOOL active;
+@property (nonatomic) BOOL transitionning;
+
+- (void)activateButton;
+- (void)desactivateButton;
 
 @end

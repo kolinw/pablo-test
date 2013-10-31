@@ -143,7 +143,7 @@
 
         TimeLineButton *step = [[TimeLineButton alloc] initWithFrame:CGRectMake(50,VMARGIN+((self.height-VMARGIN)/NB_DOTS)*i,20,20)];
 
-        step.tag = i;
+        [dots addObject:step];
         
         [self addSubview:step];
         
@@ -160,12 +160,8 @@
     
     UITouch *touch = [touches anyObject];
     CGPoint p = [touch locationInView:self];
-    
 
-    NSLog(@"TAG %ld", (long)touch.view.tag);
-    NSLog(@"%f, %f", p.x, p.y);
-    
-    
+    NSLog(@"%f, %f", p.x, p.y);    
 
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -175,21 +171,7 @@
 //    
 //    [self animateHoverStepWithId:idClosest];
     
-    UITouch *touch = [touches anyObject];
-    CGPoint p = [touch locationInView:self];
     
-    for (UIView *subview in self.subviews)
-    {
-        if (CGRectContainsPoint(subview.frame, p) )
-        {
-            // Found the subview the user touched
-            NSLog(@"SUBVIEW TAG %ld", (long)subview.tag);
-        }
-    }
-    
-    
-    
-    NSLog(@"%f, %f", p.x, p.y);
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -199,30 +181,63 @@
 //    NSLog(@"ACTIVE = %i", idClosest);
 //    
 //    [self animateActiveStepWithId:idClosest];
+    
+    UITouch *touch = [touches anyObject];
+    CGPoint p = [touch locationInView:self];
+    
+    TimeLineButton *activeBtn = [self findActiveSubviewOnPoint:p];
+    [self updateButtonsWithActive:activeBtn];
+    
+    NSLog(@"%f, %f", p.x, p.y);
 }
 
-- (CAShapeLayer *) findClosestDotFromTouch:(NSSet *)touches
+-(TimeLineButton *)findActiveSubviewOnPoint:(CGPoint)p
 {
-    NSArray *touchesArray = [touches allObjects];
-    UITouch *touch = (UITouch *)[touchesArray objectAtIndex:0];
-    CGPoint point = [touch locationInView:self];
-    
-    NSInteger min = 1000;
-    CAShapeLayer *closest;
-    
-    for (CAShapeLayer *dot in dots)
+    for (TimeLineButton *subview in self.subviews)
     {
-        NSLog(@"%f", dot.position.y-point.y);
-        NSInteger dist = abs(point.y-dot.position.y);
-        if( dist < min){
-            min = dist;
-            closest = dot;
+        if (CGRectContainsPoint(subview.frame, p) )
+        {
+            // Found the subview the user touched
+            NSLog(@"SUBVIEW TAG %ld", (long)subview.tag);
+            
+            return subview;
         }
     }
-    
-    return closest;
-
+    return NO;
 }
+
+-(void)updateButtonsWithActive:(TimeLineButton *)activeBtn
+{
+    for(TimeLineButton *button in dots){
+        if(activeBtn != button){
+            [button desactivateButton];
+        }
+    }
+    [activeBtn activateButton];
+}
+
+//- (CAShapeLayer *) findClosestDotFromTouch:(NSSet *)touches
+//{
+//    NSArray *touchesArray = [touches allObjects];
+//    UITouch *touch = (UITouch *)[touchesArray objectAtIndex:0];
+//    CGPoint point = [touch locationInView:self];
+//    
+//    NSInteger min = 1000;
+//    CAShapeLayer *closest;
+//    
+//    for (CAShapeLayer *dot in dots)
+//    {
+//        NSLog(@"%f", dot.position.y-point.y);
+//        NSInteger dist = abs(point.y-dot.position.y);
+//        if( dist < min){
+//            min = dist;
+//            closest = dot;
+//        }
+//    }
+//    
+//    return closest;
+//
+//}
 
 void draw1PxStroke(CGContextRef context, CGPoint startPoint, CGPoint endPoint, CGColorRef color)
 {
