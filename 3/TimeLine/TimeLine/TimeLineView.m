@@ -117,7 +117,7 @@
 
 -(void) drawSteps
 {
-    for(int i = 0; i <= 1; i = i + 1)
+    for(int i = 0; i <= 7; i = i + 1)
     {
         
 //        // Set up the shape of the circle
@@ -154,42 +154,38 @@
 
 -(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-//    CAShapeLayer *closest = [self findClosestDotFromTouch:touches];
-//    NSInteger idClosest = [dots indexOfObject:closest];
-//    
-//    [self animateHoverStepWithId:idClosest];
-    
-    UITouch *touch = [touches anyObject];
-    CGPoint p = [touch locationInView:self];
-
-    NSLog(@"%f, %f", p.x, p.y);    
-
-}
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-//    CAShapeLayer *closest = [self findClosestDotFromTouch:touches];
-//    NSInteger idClosest = [dots indexOfObject:closest];
-//    
-//    [self animateHoverStepWithId:idClosest];
-    
-    
-}
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-//    CAShapeLayer *closest = [self findClosestDotFromTouch:touches];
-//    NSInteger idClosest = [dots indexOfObject:closest];
-//    
-//    NSLog(@"ACTIVE = %i", idClosest);
-//    
-//    [self animateActiveStepWithId:idClosest];
     
     UITouch *touch = [touches anyObject];
     CGPoint p = [touch locationInView:self];
     
     TimeLineButton *activeBtn = [self findActiveSubviewOnPoint:p];
-    [self updateButtonsWithActive:activeBtn];
+    if(activeBtn){
+        NSLog(@"MOVED ON BTN !");
+        [self updateButtonsWithActive:activeBtn andDragging:YES];
+    }
     
-    NSLog(@"%f, %f", p.x, p.y);
+
+    NSLog(@"%f, %f", p.x, p.y);    
+
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+    UITouch *touch = [touches anyObject];
+    CGPoint p = [touch locationInView:self];
+    
+    TimeLineButton *activeBtn = [self findActiveSubviewOnPoint:p];
+    [self updateButtonsWithActive:activeBtn andDragging:NO];
+    
+    //NSLog(@"%f, %f", p.x, p.y);
+    NSLog(@"TOUCH BEGAN");
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+        NSLog(@"TOUCH ENDED");
+    [self updateButtonsWithActive:self.activeDot andDragging:NO];
 }
 
 -(TimeLineButton *)findActiveSubviewOnPoint:(CGPoint)p
@@ -207,14 +203,19 @@
     return NO;
 }
 
--(void)updateButtonsWithActive:(TimeLineButton *)activeBtn
+-(void)updateButtonsWithActive:(TimeLineButton *)activeBtn andDragging:(BOOL)dragging
 {
-    for(TimeLineButton *button in dots){
-        if(activeBtn != button){
-            [button desactivateButton];
+    if(!dragging){
+        for(TimeLineButton *button in dots){
+            if(activeBtn != button){
+                [button desactivateButton];
+            }
         }
     }
-    [activeBtn activateButton];
+    [activeBtn activateButtonAndKeepState:!dragging];
+    self.activeDot = activeBtn;
+    NSLog(@"%@", activeBtn);
+    // MAKE THE CALL TO UPDATE CAROUSEL
 }
 
 //- (CAShapeLayer *) findClosestDotFromTouch:(NSSet *)touches

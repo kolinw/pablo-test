@@ -19,12 +19,16 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.bounds = CGRectMake(0, 0, 10, 10);
+        self.bounds = CGRectMake(0, 0, 20, 20);
         self.clipsToBounds = YES;
         // disable touch on button, handled by parent view
         self.userInteractionEnabled = NO;
         self.active = NO;
         self.transitionning = NO;
+        
+        //DEBUG
+        //self.layer.borderColor = [UIColor whiteColor].CGColor;
+        //self.layer.borderWidth = 1.0;
     }
     return self;
 }
@@ -42,7 +46,7 @@
     
     
     // Make a circular shape
-    btn.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 2.0*radius, 2.0*radius)
+    btn.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(5, 5, 2.0*radius, 2.0*radius)
                                              cornerRadius:radius].CGPath;
     // Center the shape
     btn.position = CGPointMake(0, 0);
@@ -58,20 +62,25 @@
     [self.layer addSublayer:btn];
 }
 
-- (void)activateButton
+- (void)activateButtonAndKeepState:(BOOL)keepState
 {
     if(!self.active && !self.transitionning){
         
         self.active = YES;
-        [CATransaction begin]; {
+        [CATransaction begin];
+        [CATransaction setAnimationDuration:1.0]; {
             [CATransaction setCompletionBlock:^{
                 NSLog(@"END ACTIVE");
-                //self.transitionning = NO;
+                self.transitionning = NO;
+                
+                if(!keepState){
+                    [self desactivateButton];
+                }
             }];
             
-            //self.transitionning = YES;
+            self.transitionning = YES;
             CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
-            animation.duration = 1.0;
+            
             animation.toValue = (__bridge id)[UIColor blackColor].CGColor;
             
             [animation setFillMode:kCAFillModeForwards];
@@ -88,7 +97,8 @@
 {
     if(!self.transitionning){
          
-        [CATransaction begin]; {
+        [CATransaction begin];
+        [CATransaction setAnimationDuration:1.0]; {
             [CATransaction setCompletionBlock:^{
                 self.active = NO;
                 NSLog(@"END DESACTIVE");
@@ -97,7 +107,6 @@
             
             //self.transitionning = YES;
             CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
-            animation.duration = 1.0;
             animation.toValue = (__bridge id)[UIColor grayColor].CGColor;
             
             [animation setFillMode:kCAFillModeForwards];
@@ -108,5 +117,10 @@
         NSLog(@"ALREADY TRANSITIONNING");
     }
 }
+
+//- (NSString *)description
+//{
+//    return [NSString stringWithFormat:@"button"];
+//}
 
 @end

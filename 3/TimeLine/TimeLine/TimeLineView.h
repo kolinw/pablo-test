@@ -11,10 +11,13 @@
 static const int NB_DOTS = 18 ;
 static const int VMARGIN = 40 ;
 
+
+@class TimeLineButton;
 @interface TimeLineView : UIView
 
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, assign) CGFloat height;
 @property (nonatomic, retain) NSMutableArray *dots;
+@property (nonatomic, retain) TimeLineButton *activeDot;
 
 @end

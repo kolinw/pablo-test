@@ -14,7 +14,7 @@
 @property (nonatomic) BOOL active;
 @property (nonatomic) BOOL transitionning;
 
-- (void)activateButton;
+- (void)activateButtonAndKeepState:(BOOL)keepState;
 - (void)desactivateButton;
 
 @end
