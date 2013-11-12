@@ -14,6 +14,7 @@
 @synthesize width;
 @synthesize height;
 @synthesize dots;
+@synthesize stack;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -34,6 +35,7 @@
 
         
         dots = [[NSMutableArray alloc] init];
+        stack = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -105,11 +107,12 @@
 
 -(void) drawSteps
 {
-    for(int i = 0; i <= 7; i = i + 1)
+    NSLog(@"%f", self.height );
+    for(int i = 0; i <= MAX_NB_DOTS; i = i + 1)
     {
         
         int radius = 5;
-        TimeLineButton *step = [[TimeLineButton alloc] initWithFrame:CGRectMake(self.width/2-2*radius+0.5,VMARGIN+((self.height-VMARGIN)/NB_DOTS)*i,20,20)];
+        TimeLineButton *step = [[TimeLineButton alloc] initWithFrame:CGRectMake(self.width/2-2*radius+0.5, VMARGIN+((self.height-VMARGIN)/MAX_NB_DOTS)*i-i*radius,20,20)];
 
         [dots addObject:step];
         
@@ -130,9 +133,11 @@
     if(activeBtn){
         [self updateButtonsWithActive:activeBtn andDragging:YES];
         self.activeDot = activeBtn;
+        
+        // TEST STACK
+        //[stack addObject:activeBtn];
     }
     
-
     //NSLog(@"TOUCH MOVED %f, %f", p.x, p.y);
 
 }
@@ -148,6 +153,9 @@
     if(activeBtn){
         [self updateButtonsWithActive:activeBtn andDragging:NO];
         self.activeDot = activeBtn;
+        
+        // TEST STACK
+        //[stack addObject:activeBtn];
     }
     
 
@@ -160,6 +168,8 @@
     
     // activate last active dot and persist state
     [self updateButtonsWithActive:self.activeDot andDragging:NO];
+    
+    NSLog(@"%lu", (unsigned long)[stack count]);
 }
 
 -(TimeLineButton *)findActiveSubviewOnPoint:(CGPoint)p
@@ -186,10 +196,20 @@
             if(activeBtn != button){
                 [button desactivateButton];
                 
-                //button.layer.borderColor = [UIColor blackColor].CGColor;
-
+//                button.layer.borderColor = [UIColor blackColor].CGColor;
             }
         }
+        
+        // TEST STACK
+        /*if([stack count] > 3){
+            int ind = 0;
+            for(TimeLineButton *button in stack){
+                if(activeBtn != button){
+                    [button performSelector:@selector(desactivateButton) withObject:nil afterDelay:ind*0.1];
+                    ind++;
+                }
+            }
+        }*/
     }
     [activeBtn activateButtonAndKeepState:!dragging];
     self.activeDot = activeBtn;
