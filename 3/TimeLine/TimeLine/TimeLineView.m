@@ -108,11 +108,17 @@
 -(void) drawSteps
 {
     NSLog(@"%f", self.height );
+    int btnBoxSize = 20;
     for(int i = 0; i <= MAX_NB_DOTS; i = i + 1)
     {
-        
         int radius = 5;
-        TimeLineButton *step = [[TimeLineButton alloc] initWithFrame:CGRectMake(self.width/2-2*radius+0.5, VMARGIN+((self.height-VMARGIN)/MAX_NB_DOTS)*i-i*radius,20,20)];
+        BOOL active = YES;
+        if( i > UNLOCKED_LEVEL){
+            radius = 3;
+            active = NO;
+        }
+        
+        TimeLineButton *step = [[TimeLineButton alloc] initWithFrame:CGRectMake(self.width/2-btnBoxSize/2, VMARGIN+((self.height-VMARGIN)/MAX_NB_DOTS)*i-i*radius, btnBoxSize, btnBoxSize) andStateActive:active];
 
         [dots addObject:step];
         
@@ -178,8 +184,8 @@
     {
         if (CGRectContainsPoint(subview.frame, p) )
         {
-            // Found the subview the user touched if not already activated
-            if(self.activeDot != subview){
+            // Found the subview the user touched if not already activated && not locked step
+            if(self.activeDot != subview && subview.active){
                 return subview;
             }else{
                 NSLog(@"ALREADY ACTIVE");

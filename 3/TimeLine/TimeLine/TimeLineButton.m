@@ -14,7 +14,7 @@
 @synthesize active;
 @synthesize transitionning;
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame andStateActive:(BOOL)state
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -23,12 +23,12 @@
         self.clipsToBounds = YES;
         // disable touch on button, handled by parent view
         self.userInteractionEnabled = NO;
-        self.active = NO;
+        self.active = state;
         self.transitionning = NO;
         
         //DEBUG
-        //self.layer.borderColor = [UIColor whiteColor].CGColor;
-        //self.layer.borderWidth = 1.0;
+//        self.layer.borderColor = [UIColor whiteColor].CGColor;
+//        self.layer.borderWidth = 1.0;
     }
     return self;
 }
@@ -41,17 +41,17 @@
     // Drawing code
     
     // Set up the shape of the circle
-    int radius = 5;
+    int radius = (self.active) ? 5 : 3;
     btn = [CAShapeLayer layer];
     
     
     // Make a circular shape
-    btn.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(5, 5, 2.0*radius, 2.0*radius)
+    btn.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake((self.bounds.size.width-radius)/2, (self.bounds.size.height-radius)/2, 2.0*radius, 2.0*radius)
                                              cornerRadius:radius].CGPath;
     // Center the shape
-    btn.position = CGPointMake(0, 0);
+    btn.position = CGPointMake(-radius/2, -radius/2);
     
-    btn.anchorPoint = CGPointMake(radius, radius);
+    btn.anchorPoint = CGPointMake(radius/2, radius/2);
     
     // Configure the apperence of the circle
     btn.fillColor = [UIColor grayColor].CGColor;

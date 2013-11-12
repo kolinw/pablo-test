@@ -14,6 +14,7 @@
 @property (nonatomic) BOOL active;
 @property (nonatomic) BOOL transitionning;
 
+- (id)initWithFrame:(CGRect)frame andStateActive:(BOOL)state;
 - (void)activateButtonAndKeepState:(BOOL)keepState;
 - (void)desactivateButton;
 
