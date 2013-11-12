@@ -50,7 +50,6 @@
                                              cornerRadius:radius].CGPath;
     // Center the shape
     btn.position = CGPointMake(0, 0);
-    NSLog(@"%s", "TIMELINEBUTTON DRAWRECT");
     
     btn.anchorPoint = CGPointMake(radius, radius);
     
@@ -64,63 +63,66 @@
 
 - (void)activateButtonAndKeepState:(BOOL)keepState
 {
-    if(!self.active && !self.transitionning){
-        
-        self.active = YES;
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:1.0]; {
-            [CATransaction setCompletionBlock:^{
-                NSLog(@"END ACTIVE");
-                self.transitionning = NO;
-                
-                if(!keepState){
-                    [self desactivateButton];
-                }
-            }];
-            
-            self.transitionning = YES;
-            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
-            
-            animation.toValue = (__bridge id)[UIColor blackColor].CGColor;
-            
-            [animation setFillMode:kCAFillModeForwards];
-            [animation setRemovedOnCompletion:NO];
-            [[self.layer.sublayers objectAtIndex:0] addAnimation:animation forKey:animation.keyPath];
-        } [CATransaction commit];
-        
-    }else{
-        NSLog(@"ALREADY ACTIVE OR TRANSITIONNING");
-    }
+
+    self.btn.fillColor = [UIColor blackColor].CGColor;
+    
+//    if(!self.active && !self.transitionning){
+//        
+//        self.active = YES;
+//        [CATransaction begin];
+//        [CATransaction setAnimationDuration:1.0]; {
+//            [CATransaction setCompletionBlock:^{
+//                //NSLog(@"END ACTIVE");
+//                self.transitionning = NO;
+//                
+//                if(!keepState){
+//                    [self desactivateButton];
+//                }
+//            }];
+//            
+//            self.transitionning = YES;
+//            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
+//            
+//            animation.toValue = (__bridge id)[UIColor blackColor].CGColor;
+//            
+//            [animation setFillMode:kCAFillModeForwards];
+//            [animation setRemovedOnCompletion:NO];
+//            [[self.layer.sublayers objectAtIndex:0] addAnimation:animation forKey:animation.keyPath];
+//        } [CATransaction commit];
+//        
+//    }else{
+//        NSLog(@"ALREADY ACTIVE OR TRANSITIONNING");
+//    }
 }
 
 - (void)desactivateButton
 {
-    if(!self.transitionning){
-         
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:1.0]; {
-            [CATransaction setCompletionBlock:^{
-                self.active = NO;
-                NSLog(@"END DESACTIVE");
-                //self.transitionning = NO;
-            }];
-            
-            //self.transitionning = YES;
-            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
-            animation.toValue = (__bridge id)[UIColor grayColor].CGColor;
-            
-            [animation setFillMode:kCAFillModeForwards];
-            [animation setRemovedOnCompletion:NO];
-            [[self.layer.sublayers objectAtIndex:0] addAnimation:animation forKey:animation.keyPath];
-        } [CATransaction commit];
-    }else{
-        NSLog(@"ALREADY TRANSITIONNING");
-    }
+
+    self.btn.fillColor = [UIColor grayColor].CGColor;
+    
+//    if(!self.transitionning){
+//         
+//        [CATransaction begin];
+//        [CATransaction setAnimationDuration:1.0]; {
+//            [CATransaction setCompletionBlock:^{
+//                self.active = NO;
+//                //NSLog(@"END DESACTIVE");
+//                //self.transitionning = NO;
+//            }];
+//            
+//            //self.transitionning = YES;
+//            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
+//            animation.toValue = (__bridge id)[UIColor grayColor].CGColor;
+//            
+//            [animation setFillMode:kCAFillModeForwards];
+//            [animation setRemovedOnCompletion:NO];
+//            [[self.layer.sublayers objectAtIndex:0] addAnimation:animation forKey:animation.keyPath];
+//        } [CATransaction commit];
+//    }else{
+//        NSLog(@"ALREADY TRANSITIONNING");
+//    }
 }
 
-//- (NSString *)description
-//{
-//    return [NSString stringWithFormat:@"button"];
-//}
+
 
 @end

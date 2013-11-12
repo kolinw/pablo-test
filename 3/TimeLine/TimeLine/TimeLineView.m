@@ -36,9 +36,6 @@
         dots = [[NSMutableArray alloc] init];
     }
     
-    
-    
-    
     return self;
     
 }
@@ -60,7 +57,7 @@
     // draw step
     [self drawSteps];
     
-    //[self animateHoverStepWithId:0];
+    [self animateHoverStepWithId:1];
     
 }
 
@@ -104,15 +101,6 @@
     [animation setRemovedOnCompletion:NO];
     [[self.layer.sublayers objectAtIndex:stepNb] addAnimation:animation forKey:animation.keyPath];
     
-    // SCALE ANIM
-//    CABasicAnimation *animation2 = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-//    animation2.toValue = [NSNumber numberWithFloat:2.0];
-//    animation2.duration = 0.20f;
-//    
-//    [animation2 setFillMode:kCAFillModeForwards];
-//    [animation2 setRemovedOnCompletion:NO];
-//    [[self.layer.sublayers objectAtIndex:stepNb] addAnimation:animation2 forKey:animation2.keyPath];
-
 }
 
 -(void) drawSteps
@@ -120,27 +108,6 @@
     for(int i = 0; i <= 7; i = i + 1)
     {
         
-//        // Set up the shape of the circle
-//        int radius = 5;
-//        CAShapeLayer *circle = [CAShapeLayer layer];
-//        
-//        [dots addObject:circle];
-//        
-//        // Make a circular shape
-//        circle.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 2.0*radius, 2.0*radius)
-//                                                 cornerRadius:radius].CGPath;
-//        // Center the shape
-//        circle.position = CGPointMake(self.width/2-radius+0.5, VMARGIN+(self.height/NB_DOTS)*i);
-//        
-//        circle.anchorPoint = CGPointMake(0, 0);
-//        
-//        // Configure the apperence of the circle
-//        circle.fillColor = [UIColor grayColor].CGColor;
-//        circle.lineWidth = 0;
-//        
-//        // Add to parent layer
-//        [self.layer addSublayer:circle];
-
         int radius = 5;
         TimeLineButton *step = [[TimeLineButton alloc] initWithFrame:CGRectMake(self.width/2-2*radius+0.5,VMARGIN+((self.height-VMARGIN)/NB_DOTS)*i,20,20)];
 
@@ -158,14 +125,15 @@
     UITouch *touch = [touches anyObject];
     CGPoint p = [touch locationInView:self];
     
+    // activate current dot and do not persist state
     TimeLineButton *activeBtn = [self findActiveSubviewOnPoint:p];
     if(activeBtn){
-        NSLog(@"MOVED ON BTN !");
         [self updateButtonsWithActive:activeBtn andDragging:YES];
+        self.activeDot = activeBtn;
     }
     
 
-    NSLog(@"%f, %f", p.x, p.y);    
+    //NSLog(@"TOUCH MOVED %f, %f", p.x, p.y);
 
 }
 
@@ -175,16 +143,22 @@
     UITouch *touch = [touches anyObject];
     CGPoint p = [touch locationInView:self];
     
+    // activate current dot and persist state
     TimeLineButton *activeBtn = [self findActiveSubviewOnPoint:p];
-    [self updateButtonsWithActive:activeBtn andDragging:NO];
+    if(activeBtn){
+        [self updateButtonsWithActive:activeBtn andDragging:NO];
+        self.activeDot = activeBtn;
+    }
     
-    //NSLog(@"%f, %f", p.x, p.y);
-    NSLog(@"TOUCH BEGAN");
+
+    //NSLog(@"TOUCH BEGAN");
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-        NSLog(@"TOUCH ENDED");
+    //NSLog(@"TOUCH ENDED ON %@", self.activeDot);
+    
+    // activate last active dot and persist state
     [self updateButtonsWithActive:self.activeDot andDragging:NO];
 }
 
@@ -194,13 +168,15 @@
     {
         if (CGRectContainsPoint(subview.frame, p) )
         {
-            // Found the subview the user touched
-            NSLog(@"SUBVIEW TAG %ld", (long)subview.tag);
-            
-            return subview;
+            // Found the subview the user touched if not already activated
+            if(self.activeDot != subview){
+                return subview;
+            }else{
+                NSLog(@"ALREADY ACTIVE");
+            }
         }
     }
-    return NO;
+    return nil;
 }
 
 -(void)updateButtonsWithActive:(TimeLineButton *)activeBtn andDragging:(BOOL)dragging
@@ -209,12 +185,22 @@
         for(TimeLineButton *button in dots){
             if(activeBtn != button){
                 [button desactivateButton];
+                
+                //button.layer.borderColor = [UIColor blackColor].CGColor;
+
             }
         }
     }
     [activeBtn activateButtonAndKeepState:!dragging];
     self.activeDot = activeBtn;
-    NSLog(@"%@", activeBtn);
+    
+//    self.activeDot.layer.borderColor = [UIColor whiteColor].CGColor;
+//    self.activeDot.layer.borderWidth = 1.0;
+    
+    NSInteger goToStep = [dots indexOfObject:activeBtn];
+
+    NSLog(@"ACTIVE INDEX + %lu", (unsigned long)goToStep );
+    
     // MAKE THE CALL TO UPDATE CAROUSEL
 }
 
