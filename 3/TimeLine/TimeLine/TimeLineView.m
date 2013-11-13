@@ -11,6 +11,8 @@
 
 @implementation TimeLineView
 
+@synthesize delegate;
+
 @synthesize width;
 @synthesize height;
 @synthesize dots;
@@ -239,7 +241,9 @@
 
     NSLog(@"ACTIVE INDEX + %lu", (unsigned long)goToStep );
     
-    // MAKE THE CALL TO UPDATE CAROUSEL
+    // MAKE THE CALL TO DELEGATE
+    [self stepChanged:goToStep];
+    
 }
 
 -(BOOL)unlockNextButton
@@ -288,6 +292,13 @@ void draw1PxStroke(CGContextRef context, CGPoint startPoint, CGPoint endPoint, C
     CGContextAddLineToPoint(context, endPoint.x + 0.5, endPoint.y + 0.5);
     CGContextStrokePath(context);
     CGContextRestoreGState(context);
+}
+
+- (void)stepChanged:(NSInteger)stepId
+{
+    // Sanity check, did they set the delegate?
+    if([self delegate] != nil)
+        [[self delegate] stepChanged:stepId];
 }
 
 @end

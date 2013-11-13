@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "iCarousel.h"
 
 @class TimeLineView;
-@interface TimeLineViewController : UIViewController
-@property (nonatomic, retain) TimeLineView *timeLineView;
+
+@interface TimeLineViewController : UIViewController <iCarouselDataSource, iCarouselDelegate>
+
+@property (nonatomic, strong) TimeLineView *timeLineView;
+@property (nonatomic, strong) iCarousel *carousel;
+
 
 - (IBAction)unlockNext:(id)sender;
 @end

@@ -23,6 +23,9 @@
 		91A21DC71821045C00DB508B /* TimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A21DC51821045C00DB508B /* TimeLineViewController.m */; };
 		91A21DC81821045C00DB508B /* TimeLineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91A21DC61821045C00DB508B /* TimeLineViewController.xib */; };
 		91A21DCB1821079B00DB508B /* TimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A21DCA1821079B00DB508B /* TimeLineView.m */; };
+		91B7A7A81833C82300D01519 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B7A7A71833C82300D01519 /* iCarousel.m */; };
+		91B7A7AA1833C82E00D01519 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B7A7A91833C82E00D01519 /* QuartzCore.framework */; };
+		91B7A7AC1833C96100D01519 /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B7A7AB1833C96100D01519 /* page.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,10 @@
 		91A21DC61821045C00DB508B /* TimeLineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineViewController.xib; sourceTree = "<group>"; };
 		91A21DC91821079B00DB508B /* TimeLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineView.h; sourceTree = "<group>"; };
 		91A21DCA1821079B00DB508B /* TimeLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeLineView.m; sourceTree = "<group>"; };
+		91B7A7A61833C82300D01519 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		91B7A7A71833C82300D01519 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		91B7A7A91833C82E00D01519 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		91B7A7AB1833C96100D01519 /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91B7A7AA1833C82E00D01519 /* QuartzCore.framework in Frameworks */,
 				91A21D981821043200DB508B /* CoreGraphics.framework in Frameworks */,
 				91A21D9A1821043200DB508B /* UIKit.framework in Frameworks */,
 				91A21D961821043200DB508B /* Foundation.framework in Frameworks */,
@@ -88,6 +96,7 @@
 		91A21D891821043200DB508B = {
 			isa = PBXGroup;
 			children = (
+				91B7A7A51833C82300D01519 /* iCarousel */,
 				91A21D9B1821043200DB508B /* TimeLine */,
 				91A21DB41821043300DB508B /* TimeLineTests */,
 				91A21D941821043200DB508B /* Frameworks */,
@@ -107,6 +116,7 @@
 		91A21D941821043200DB508B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				91B7A7A91833C82E00D01519 /* QuartzCore.framework */,
 				91A21D951821043200DB508B /* Foundation.framework */,
 				91A21D971821043200DB508B /* CoreGraphics.framework */,
 				91A21D991821043200DB508B /* UIKit.framework */,
@@ -118,6 +128,8 @@
 		91A21D9B1821043200DB508B /* TimeLine */ = {
 			isa = PBXGroup;
 			children = (
+				91A21D9C1821043200DB508B /* Supporting Files */,
+				91B7A7AD1833C96900D01519 /* Resources */,
 				91A21DC91821079B00DB508B /* TimeLineView.h */,
 				91A21DCA1821079B00DB508B /* TimeLineView.m */,
 				33AA23B0182184DA00855D97 /* TimeLineButton.h */,
@@ -128,7 +140,6 @@
 				91A21DA41821043300DB508B /* PPAppDelegate.h */,
 				91A21DA51821043300DB508B /* PPAppDelegate.m */,
 				91A21DA71821043300DB508B /* Images.xcassets */,
-				91A21D9C1821043200DB508B /* Supporting Files */,
 			);
 			path = TimeLine;
 			sourceTree = "<group>";
@@ -160,6 +171,23 @@
 				91A21DB71821043300DB508B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		91B7A7A51833C82300D01519 /* iCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				91B7A7A61833C82300D01519 /* iCarousel.h */,
+				91B7A7A71833C82300D01519 /* iCarousel.m */,
+			);
+			path = iCarousel;
+			sourceTree = "<group>";
+		};
+		91B7A7AD1833C96900D01519 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				91B7A7AB1833C96100D01519 /* page.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +266,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91B7A7AC1833C96100D01519 /* page.png in Resources */,
 				91A21DC81821045C00DB508B /* TimeLineViewController.xib in Resources */,
 				91A21DA01821043300DB508B /* InfoPlist.strings in Resources */,
 				91A21DA81821043300DB508B /* Images.xcassets in Resources */,
@@ -262,6 +291,7 @@
 				91A21DA61821043300DB508B /* PPAppDelegate.m in Sources */,
 				91A21DC71821045C00DB508B /* TimeLineViewController.m in Sources */,
 				91A21DA21821043300DB508B /* main.m in Sources */,
+				91B7A7A81833C82300D01519 /* iCarousel.m in Sources */,
 				91A21DCB1821079B00DB508B /* TimeLineView.m in Sources */,
 				33AA23B2182184DA00855D97 /* TimeLineButton.m in Sources */,
 			);
