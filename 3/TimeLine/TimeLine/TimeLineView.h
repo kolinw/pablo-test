@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-static const int MAX_NB_DOTS = 12 ;
-static const int UNLOCKED_LEVEL = 5;
-static const int VMARGIN = 40 ;
+static const int MAX_NB_DOTS = 10 ;
+static const int UNLOCKED_LEVEL = 2;
+static const int VMARGIN = 40;
 
 
 @class TimeLineButton;

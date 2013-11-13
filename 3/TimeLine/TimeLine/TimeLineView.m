@@ -20,7 +20,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        
+        NSLog(@"INIT timeline with FRAME");
+        [self start];
         
     }
     
@@ -33,13 +35,19 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
 
-        
-        dots = [[NSMutableArray alloc] init];
-        stack = [[NSMutableArray alloc] init];
+        NSLog(@"INIT timeline with CODER");
+        [self start];
+       
     }
     
     return self;
     
+}
+
+-(void)start
+{
+    dots = [[NSMutableArray alloc] init];
+    stack = [[NSMutableArray alloc] init];
 }
 
 -(void) drawRect: (CGRect) rect
@@ -109,7 +117,8 @@
 {
     NSLog(@"%f", self.height );
     int btnBoxSize = 20;
-    for(int i = 0; i <= MAX_NB_DOTS; i = i + 1)
+    
+    for(int i = 1; i <= MAX_NB_DOTS; i = i + 1)
     {
         int radius = 5;
         BOOL active = YES;
@@ -118,7 +127,10 @@
             active = NO;
         }
         
-        TimeLineButton *step = [[TimeLineButton alloc] initWithFrame:CGRectMake(self.width/2-btnBoxSize/2, VMARGIN+((self.height-VMARGIN)/MAX_NB_DOTS)*i-i*radius, btnBoxSize, btnBoxSize) andStateActive:active];
+        
+        NSInteger yn = VMARGIN+((self.height-2*VMARGIN)/(MAX_NB_DOTS+1))*i-btnBoxSize/2;
+        
+        TimeLineButton *step = [[TimeLineButton alloc] initWithFrame:CGRectMake(self.width/2-btnBoxSize/2, yn, btnBoxSize, btnBoxSize) andStateActive:active];
 
         [dots addObject:step];
         

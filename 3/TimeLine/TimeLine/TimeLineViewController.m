@@ -7,6 +7,7 @@
 //
 
 #import "TimeLineViewController.h"
+#import "TimeLineView.h"
 
 @interface TimeLineViewController ()
 
@@ -14,11 +15,21 @@
 
 @implementation TimeLineViewController
 
+@synthesize timeLineView;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        timeLineView = [[TimeLineView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-20, 0, 20, self.view.bounds.size.height)];
+        //        timeLineView.layer.borderColor = [UIColor whiteColor].CGColor;
+        //        timeLineView.layer.borderWidth = 1.0;
+        timeLineView.layer.backgroundColor = [UIColor whiteColor].CGColor;
+        
+        [self.view addSubview:timeLineView];
+        
     }
     return self;
 }
@@ -47,28 +58,28 @@
     
     
     
-//    // COLOR ANIMATION
-//    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
-//    animation.duration = 1.0;
-//    animation.toValue = (__bridge id)[UIColor colorWithHue:0 saturation:.1 brightness:.1 alpha:.1].CGColor;
-//    
-//    [animation setFillMode:kCAFillModeForwards];
-//    [animation setRemovedOnCompletion:NO];
-//    
-//    [circle addAnimation:animation forKey:animation.keyPath];
+    //    // COLOR ANIMATION
+    //    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
+    //    animation.duration = 1.0;
+    //    animation.toValue = (__bridge id)[UIColor colorWithHue:0 saturation:.1 brightness:.1 alpha:.1].CGColor;
+    //
+    //    [animation setFillMode:kCAFillModeForwards];
+    //    [animation setRemovedOnCompletion:NO];
+    //
+    //    [circle addAnimation:animation forKey:animation.keyPath];
     // END COLOR ANIMATION
     
     
     // SCALE ANIMATION
-//    CABasicAnimation *animation2 = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-//    animation2.fromValue = [NSNumber numberWithFloat:1.00];
-//    animation2.toValue = [NSNumber numberWithFloat:1.50];
-//    animation2.duration = 0.20f;
-//    
-//    [animation2 setFillMode:kCAFillModeForwards];
-//    [animation2 setRemovedOnCompletion:NO];
-//    
-//    [circle addAnimation:animation2 forKey:@"drag"];
+    //    CABasicAnimation *animation2 = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    //    animation2.fromValue = [NSNumber numberWithFloat:1.00];
+    //    animation2.toValue = [NSNumber numberWithFloat:1.50];
+    //    animation2.duration = 0.20f;
+    //
+    //    [animation2 setFillMode:kCAFillModeForwards];
+    //    [animation2 setRemovedOnCompletion:NO];
+    //
+    //    [circle addAnimation:animation2 forKey:@"drag"];
     // END SCALE ANIMATION
 }
 
@@ -78,4 +89,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)unlockNext:(id)sender {
+    NSLog(@"UNLOCK IT MOTHAF");
+}
 @end

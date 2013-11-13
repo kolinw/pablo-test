@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class TimeLineView;
 @interface TimeLineViewController : UIViewController
+@property (nonatomic, retain) TimeLineView *timeLineView;
 
+- (IBAction)unlockNext:(id)sender;
 @end
