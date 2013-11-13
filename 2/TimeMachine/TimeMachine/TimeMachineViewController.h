@@ -13,4 +13,8 @@
 @property (strong, nonatomic) IBOutlet UIView *view;
 @property (nonatomic, strong) IBOutlet iCarousel *carousel;
 
+@property (strong, nonatomic) NSMutableArray *animals;
+@property (strong, nonatomic) NSMutableArray *descriptions;
+@property (nonatomic) BOOL wrap;
+
 @end

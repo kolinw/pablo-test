@@ -19,6 +19,13 @@
 		91166D21181FB7350074C58E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91166D09181FB7350074C58E /* UIKit.framework */; };
 		91166D29181FB7350074C58E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91166D27181FB7350074C58E /* InfoPlist.strings */; };
 		91166D2B181FB7350074C58E /* TimeMachineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 91166D2A181FB7350074C58E /* TimeMachineTests.m */; };
+		91B7A79E1833C41400D01519 /* Bear.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B7A7971833C41400D01519 /* Bear.png */; };
+		91B7A79F1833C41400D01519 /* Birds.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B7A7981833C41400D01519 /* Birds.png */; };
+		91B7A7A01833C41400D01519 /* Chimp.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B7A7991833C41400D01519 /* Chimp.png */; };
+		91B7A7A11833C41400D01519 /* Giraffe.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B7A79A1833C41400D01519 /* Giraffe.png */; };
+		91B7A7A21833C41400D01519 /* Goat.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B7A79B1833C41400D01519 /* Goat.png */; };
+		91B7A7A31833C41400D01519 /* Tiger.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B7A79C1833C41400D01519 /* Tiger.png */; };
+		91B7A7A41833C41400D01519 /* Zebra.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B7A79D1833C41400D01519 /* Zebra.png */; };
 		91E74E96181FBB4600038325 /* TimeMachineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E74E94181FBB4600038325 /* TimeMachineViewController.m */; };
 		91E74E97181FBB4600038325 /* TimeMachineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E74E95181FBB4600038325 /* TimeMachineViewController.xib */; };
 		91E74E9B181FC0EB00038325 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E74E9A181FC0EB00038325 /* iCarousel.m */; };
@@ -55,6 +62,13 @@
 		91166D26181FB7350074C58E /* TimeMachineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TimeMachineTests-Info.plist"; sourceTree = "<group>"; };
 		91166D28181FB7350074C58E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		91166D2A181FB7350074C58E /* TimeMachineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeMachineTests.m; sourceTree = "<group>"; };
+		91B7A7971833C41400D01519 /* Bear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bear.png; sourceTree = "<group>"; };
+		91B7A7981833C41400D01519 /* Birds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Birds.png; sourceTree = "<group>"; };
+		91B7A7991833C41400D01519 /* Chimp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chimp.png; sourceTree = "<group>"; };
+		91B7A79A1833C41400D01519 /* Giraffe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Giraffe.png; sourceTree = "<group>"; };
+		91B7A79B1833C41400D01519 /* Goat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Goat.png; sourceTree = "<group>"; };
+		91B7A79C1833C41400D01519 /* Tiger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tiger.png; sourceTree = "<group>"; };
+		91B7A79D1833C41400D01519 /* Zebra.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Zebra.png; sourceTree = "<group>"; };
 		91E74E93181FBB4600038325 /* TimeMachineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeMachineViewController.h; sourceTree = "<group>"; };
 		91E74E94181FBB4600038325 /* TimeMachineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeMachineViewController.m; sourceTree = "<group>"; };
 		91E74E95181FBB4600038325 /* TimeMachineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeMachineViewController.xib; sourceTree = "<group>"; };
@@ -179,6 +193,13 @@
 		91E74E9C181FC39900038325 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				91B7A7971833C41400D01519 /* Bear.png */,
+				91B7A7981833C41400D01519 /* Birds.png */,
+				91B7A7991833C41400D01519 /* Chimp.png */,
+				91B7A79A1833C41400D01519 /* Giraffe.png */,
+				91B7A79B1833C41400D01519 /* Goat.png */,
+				91B7A79C1833C41400D01519 /* Tiger.png */,
+				91B7A79D1833C41400D01519 /* Zebra.png */,
 				91E74E9D181FC39900038325 /* background.png */,
 				91E74E9E181FC39900038325 /* page.png */,
 				91E74E9F181FC39900038325 /* placeholder.png */,
@@ -262,11 +283,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91B7A79F1833C41400D01519 /* Birds.png in Resources */,
 				91166D10181FB7350074C58E /* InfoPlist.strings in Resources */,
+				91B7A7A41833C41400D01519 /* Zebra.png in Resources */,
 				91E74EA2181FC39900038325 /* placeholder.png in Resources */,
+				91B7A7A31833C41400D01519 /* Tiger.png in Resources */,
 				91E74EA1181FC39900038325 /* page.png in Resources */,
 				91E74EA0181FC39900038325 /* background.png in Resources */,
+				91B7A79E1833C41400D01519 /* Bear.png in Resources */,
+				91B7A7A11833C41400D01519 /* Giraffe.png in Resources */,
+				91B7A7A21833C41400D01519 /* Goat.png in Resources */,
 				91166D18181FB7350074C58E /* Images.xcassets in Resources */,
+				91B7A7A01833C41400D01519 /* Chimp.png in Resources */,
 				91E74E97181FBB4600038325 /* TimeMachineViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
