@@ -26,7 +26,7 @@
         timeLineView = [[TimeLineView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-20, 0, 20, self.view.bounds.size.height)];
         //        timeLineView.layer.borderColor = [UIColor whiteColor].CGColor;
         //        timeLineView.layer.borderWidth = 1.0;
-        timeLineView.layer.backgroundColor = [UIColor whiteColor].CGColor;
+        timeLineView.backgroundColor = [UIColor whiteColor];
         
         [self.view addSubview:timeLineView];
         
@@ -91,5 +91,6 @@
 
 - (IBAction)unlockNext:(id)sender {
     NSLog(@"UNLOCK IT MOTHAF");
+    [timeLineView unlockNextButton];
 }
 @end

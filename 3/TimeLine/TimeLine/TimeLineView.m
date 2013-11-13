@@ -242,6 +242,19 @@
     // MAKE THE CALL TO UPDATE CAROUSEL
 }
 
+-(BOOL)unlockNextButton
+{
+    NSLog(@"COMIN' IN %li", (unsigned long)[dots count]);
+    for(TimeLineButton *btn in dots)
+    {
+        if(!btn.active){
+            btn.active = YES;
+            return YES;
+        }
+    }
+    return NO;
+}
+
 //- (CAShapeLayer *) findClosestDotFromTouch:(NSSet *)touches
 //{
 //    NSArray *touchesArray = [touches allObjects];

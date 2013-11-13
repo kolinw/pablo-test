@@ -27,8 +27,8 @@
         self.transitionning = NO;
         
         //DEBUG
-//        self.layer.borderColor = [UIColor whiteColor].CGColor;
-//        self.layer.borderWidth = 1.0;
+        //        self.layer.borderColor = [UIColor whiteColor].CGColor;
+        //        self.layer.borderWidth = 1.0;
     }
     return self;
 }
@@ -47,7 +47,7 @@
     
     // Make a circular shape
     btn.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake((self.bounds.size.width-radius)/2, (self.bounds.size.height-radius)/2, 2.0*radius, 2.0*radius)
-                                             cornerRadius:radius].CGPath;
+                                          cornerRadius:radius].CGPath;
     // Center the shape
     btn.position = CGPointMake(-radius/2, -radius/2);
     
@@ -63,66 +63,72 @@
 
 - (void)activateButtonAndKeepState:(BOOL)keepState
 {
-
+    
     self.btn.fillColor = [UIColor blackColor].CGColor;
     
-//    if(!self.active && !self.transitionning){
-//        
-//        self.active = YES;
-//        [CATransaction begin];
-//        [CATransaction setAnimationDuration:1.0]; {
-//            [CATransaction setCompletionBlock:^{
-//                //NSLog(@"END ACTIVE");
-//                self.transitionning = NO;
-//                
-//                if(!keepState){
-//                    [self desactivateButton];
-//                }
-//            }];
-//            
-//            self.transitionning = YES;
-//            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
-//            
-//            animation.toValue = (__bridge id)[UIColor blackColor].CGColor;
-//            
-//            [animation setFillMode:kCAFillModeForwards];
-//            [animation setRemovedOnCompletion:NO];
-//            [[self.layer.sublayers objectAtIndex:0] addAnimation:animation forKey:animation.keyPath];
-//        } [CATransaction commit];
-//        
-//    }else{
-//        NSLog(@"ALREADY ACTIVE OR TRANSITIONNING");
-//    }
+    //    if(!self.active && !self.transitionning){
+    //
+    //        self.active = YES;
+    //        [CATransaction begin];
+    //        [CATransaction setAnimationDuration:1.0]; {
+    //            [CATransaction setCompletionBlock:^{
+    //                //NSLog(@"END ACTIVE");
+    //                self.transitionning = NO;
+    //
+    //                if(!keepState){
+    //                    [self desactivateButton];
+    //                }
+    //            }];
+    //
+    //            self.transitionning = YES;
+    //            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
+    //
+    //            animation.toValue = (__bridge id)[UIColor blackColor].CGColor;
+    //
+    //            [animation setFillMode:kCAFillModeForwards];
+    //            [animation setRemovedOnCompletion:NO];
+    //            [[self.layer.sublayers objectAtIndex:0] addAnimation:animation forKey:animation.keyPath];
+    //        } [CATransaction commit];
+    //
+    //    }else{
+    //        NSLog(@"ALREADY ACTIVE OR TRANSITIONNING");
+    //    }
 }
 
 - (void)desactivateButton
 {
-
+    
     self.btn.fillColor = [UIColor grayColor].CGColor;
     
-//    if(!self.transitionning){
-//         
-//        [CATransaction begin];
-//        [CATransaction setAnimationDuration:1.0]; {
-//            [CATransaction setCompletionBlock:^{
-//                self.active = NO;
-//                //NSLog(@"END DESACTIVE");
-//                //self.transitionning = NO;
-//            }];
-//            
-//            //self.transitionning = YES;
-//            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
-//            animation.toValue = (__bridge id)[UIColor grayColor].CGColor;
-//            
-//            [animation setFillMode:kCAFillModeForwards];
-//            [animation setRemovedOnCompletion:NO];
-//            [[self.layer.sublayers objectAtIndex:0] addAnimation:animation forKey:animation.keyPath];
-//        } [CATransaction commit];
-//    }else{
-//        NSLog(@"ALREADY TRANSITIONNING");
-//    }
+    //    if(!self.transitionning){
+    //
+    //        [CATransaction begin];
+    //        [CATransaction setAnimationDuration:1.0]; {
+    //            [CATransaction setCompletionBlock:^{
+    //                self.active = NO;
+    //                //NSLog(@"END DESACTIVE");
+    //                //self.transitionning = NO;
+    //            }];
+    //
+    //            //self.transitionning = YES;
+    //            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
+    //            animation.toValue = (__bridge id)[UIColor grayColor].CGColor;
+    //
+    //            [animation setFillMode:kCAFillModeForwards];
+    //            [animation setRemovedOnCompletion:NO];
+    //            [[self.layer.sublayers objectAtIndex:0] addAnimation:animation forKey:animation.keyPath];
+    //        } [CATransaction commit];
+    //    }else{
+    //        NSLog(@"ALREADY TRANSITIONNING");
+    //    }
 }
 
-
+-(void)setActive:(BOOL)v
+{
+    active = v;
+    // redraw the view
+    [self setNeedsDisplay];
+    NSLog(@"ACTIVE SET");
+}
 
 @end
