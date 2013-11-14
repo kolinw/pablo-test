@@ -32,7 +32,7 @@ static const int VMARGIN = 40;
 @property (nonatomic, retain) NSMutableArray *stack;
 @property (nonatomic, retain) TimeLineButton *activeDot;
 
--(void)stepChanged;
+- (void)stepChanged:(NSInteger)stepId;
 
 -(BOOL)unlockNextButton;
 
