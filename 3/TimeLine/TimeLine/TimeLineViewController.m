@@ -72,6 +72,7 @@
     carousel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     carousel.type = iCarouselTypeInvertedTimeMachine;
     carousel.bounces = NO;
+    carousel.scrollEnabled = NO;
     carousel.delegate = self;
     carousel.dataSource = self;
     
@@ -162,12 +163,15 @@
             return 2;
         case iCarouselOptionWrap:
             return NO;
+        case iCarouselOptionVisibleItems:
+            return 2;
         default:
             return value;
     }
 }
 
-- (void)carouselDidEndScrollingAnimation:(iCarousel *)localCarousel {
+- (void)carouselDidEndScrollingAnimation:(iCarousel *)localCarousel
+{
     NSLog(@"END SCROLL AT %ld %i", (long)self.carousel.currentItemIndex, (int)currentStep);
 }
 
@@ -176,6 +180,11 @@
     UIView *currentView = [self.carousel itemViewAtIndex:*(currentStep) ];
     // TODO : comprendre pourquoi el recyclage des vues change le backgroundColor de place ...
     currentView.backgroundColor = [UIColor blackColor];
+}
+
+-(void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
+{
+    NSLog(@"SELECT %ld", (long)index);
 }
 
 #pragma mark -
