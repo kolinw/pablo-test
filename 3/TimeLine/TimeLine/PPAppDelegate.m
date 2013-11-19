@@ -18,7 +18,7 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    self.timeLineViewController = [[TimeLineViewController alloc] initWithNibName:@"TimeLineViewController" bundle:nil];
+    self.timeLineViewController = [[TimeLineViewController alloc] init];
     self.window.rootViewController = self.timeLineViewController;
     
     [self.window makeKeyAndVisible];
