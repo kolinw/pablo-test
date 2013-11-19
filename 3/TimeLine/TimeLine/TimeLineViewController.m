@@ -21,20 +21,16 @@
 @synthesize timeLineView;
 @synthesize carousel, currentStep;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-
-        //set up data
+    if ((self = [super init])) {
         self.items = [NSMutableArray array];
         for (int i = 0; i < 1000; i++)
         {
             [self.items addObject:@(i)];
         }
-
     }
+    
     return self;
 }
 
@@ -126,7 +122,7 @@
         view.contentMode = UIViewContentModeCenter;
         label = [[UILabel alloc] initWithFrame:view.bounds];
         label.backgroundColor = [UIColor clearColor];
-        label.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentCenter;
         label.font = [label.font fontWithSize:50];
         label.tag = 1;
         [view addSubview:label];
@@ -152,11 +148,11 @@
     switch (option)
     {
         case iCarouselOptionFadeMin:
-            return -0.2;
+            return -0.2f;
         case iCarouselOptionFadeMax:
-            return 0.2;
+            return 0.2f;
         case iCarouselOptionFadeRange:
-            return 2.0;
+            return .8f;
         case iCarouselOptionTilt:
             return 0;
         case iCarouselOptionSpacing:
